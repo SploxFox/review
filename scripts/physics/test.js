@@ -1,3 +1,8 @@
+window.onerror = function(error,url,line){
+  const span = document.createElement("span");
+  span.textContent = "ERROR: " + error + " URL: " + url + " LINE: " + line;
+  document.body.appendChild(span);
+}
 const data = new DataSet([
   new Vector(0,0),
   new Vector(10,10),
