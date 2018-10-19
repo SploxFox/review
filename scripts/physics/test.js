@@ -12,5 +12,14 @@ const data = new DataSet([
 ]);
 const graph = data.graph(500,500,false);
 window.onload = function(){
+  const input = document.createElement("input");
+  input.type = "text";
+  document.body.appendChild(input);
+  const button = document.createElement("button");
+  button.onclick = function(){
+    eval(input.value);
+    input.value = "";
+  }
+  document.body.appendChild(button);
   document.body.appendChild(graph.canvas);
 }
