@@ -6,4 +6,6 @@ const data = new DataSet([
   new Vector(40,40)
 ]);
 const graph = data.graph(500,500,false);
-document.body.appendChild(graph.canvas);
+window.onload = function(){
+  document.body.appendChild(graph.canvas);
+}
