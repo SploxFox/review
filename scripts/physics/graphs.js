@@ -15,18 +15,29 @@ class Graph {
   createGridlines(step){
     this.step = step;
     const boundsLength = new Vector((this.xBounds.y - this.xBounds.x),(this.yBounds.y - this.yBounds.x));
+    //TODO: add the proper gridline styles here
     //Draw the vertical grid lines along the x-axis.
     for (var i = 0; i < boundsLength.x / this.step; i++){
       this.ctx.beginPath();
-      this.ctx.moveTo(this.translate(this.step * i),0);
-      this.ctx.lineTo(this.translate(this.step * i),canvas.height);
+      this.ctx.moveTo(this.translate((this.step * i) + this.xBounds.x,0));
+      this.ctx.lineTo(this.translate((this.step * i) + this.xBounds.x,canvas.height));
       this.ctx.stroke();
     }
+    //Draw horizontal lines across y axis
+    for (var i = 0; i < boundsLength.y / this.step; i++){
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.translate((this.step * i) + this.yBounds.x,0));
+      this.ctx.lineTo(this.translate((this.step * i) + this.yBounds.x,canvas.height));
+      this.ctx.stroke();
+    }
+    return this;
   }
 }
 class DataSet {
   constructor(dataPoints){
     this.dataPoints = dataPoints;
+    this.color = "red";
+    this.bl
   }
   graph(width,height,connectDots){
     const graph = new Graph(width,height,getBounds(this.dataPoints.x),getBounds(this.dataPoints.y));
@@ -35,13 +46,12 @@ class DataSet {
     } //maybe this will be used?
     if (height != undefined){
       this.height = height;
-    }*/
+    }*//*
     canvas.width = width;
-    canvas.height = height;
+    canvas.height = height;*/
     //Creating lines on the graph
-    for (var i = 0; i < this.dataPoints.length; i++){
-      
-    }
+    graph.createGridlines(5);
+    graph.plot(this.dataPoints,connectDots);
   }
   //Returns the bounds of the y data set in the form of (min,max)
 }
