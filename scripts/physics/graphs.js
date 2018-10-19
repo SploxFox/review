@@ -40,7 +40,7 @@ class DataSet {
     this.bl
   }
   graph(width,height,connectDots){
-    const graph = new Graph(width,height,getBounds(this.dataPoints.x),getBounds(this.dataPoints.y));
+    const graph = new Graph(width,height,getBounds(this.dataPoints),getBounds(this.dataPoints.y));
     /*if (width != undefined){
       this.width = width;
     } //maybe this will be used?
@@ -57,7 +57,7 @@ class DataSet {
 }
 
 function getBounds(dataPoints){
-  var max;
+  var max;//TODO: make it so that this can take in dataPoints.x
     var min;
     for (var i = 0; i < dataPoints.length; i++){
       if (max == undefined || max < dataPoints.length[i].y){
