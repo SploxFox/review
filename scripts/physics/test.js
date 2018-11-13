@@ -3,16 +3,19 @@ window.onerror = function(error,url,line){
   p.textContent = "[ERROR]: " + error + " [URL]: " + url + " [LINE]: " + line;
   document.body.appendChild(p);
 }
-const data = new DataSet([
-  new Vector(0,0),
-  new Vector(10,10),
-  new Vector(20,20),
-  new Vector(30,30),
-  new Vector(40,40)
+var data = new DataSet([
+	//new Vector(0,0),
+	new Vector(1,10),
+	new Vector(2,30),
+	new Vector(3,60),
+	new Vector(4,100),
+	new Vector(5,150),
+	new Vector(6,210)
 ]);
-const graph = data.graph(500,500,false);
+//         new DataSet([new Vector(0,0),new Vector(10,10)])
+
 window.onload = function(){
-  const input = document.createElement("input");
+  /*const input = document.createElement("input");
   input.type = "text";
   document.body.appendChild(input);
   const button = document.createElement("button");
@@ -20,6 +23,7 @@ window.onload = function(){
     eval(input.value);
     input.value = "";
   }
-  document.body.appendChild(button);
-  document.body.appendChild(graph.canvas);
+  document.body.appendChild(button);*/
+  window.setTimeout(function(){var graph = data.graph(500,500,1,5,true,false,seconds,meters);document.body.appendChild(graph.canvas);},1000);
+  
 }
