@@ -25,6 +25,8 @@ class Graph {
 		}
 		this.canvas.width = width;
 		this.canvas.height = height;
+		this.canvas.style.maxWidth = width;
+		this.canvas.style.maxHeight = height;
 		this.xBounds = xBounds;
 		this.yBounds = yBounds;
 		this.colorPalette = {
@@ -38,8 +40,8 @@ class Graph {
 	}
 	translate(point){
 		return new Vector(
-			30 + (point.x - this.xBounds.x) * ((this.canvas.width - 60) / this.xBounds.diff()),
-			-30 + (point.y - this.yBounds.x) * ((this.canvas.height - 60) / this.yBounds.diff()) * -1 + this.canvas.height 
+			60 + (point.x - this.xBounds.x) * ((this.canvas.width - 120) / this.xBounds.diff()),
+			-60 + (point.y - this.yBounds.x) * ((this.canvas.height - 120) / this.yBounds.diff()) * -1 + this.canvas.height
 		);
 	}
 	createGridlines(step){
@@ -52,7 +54,7 @@ class Graph {
 			throw "Error: Step cannot be zero.";
 		}
 		this.ctx.font = "15px Source Sans Pro";
-		
+
 		//Draw the vertical grid lines along the x-axis.
 		for (var i = 0; i < boundsLength.x / this.step.x; i++){
 			this.flipColor(i,step.x);
@@ -61,10 +63,11 @@ class Graph {
 			this.ctx.lineToVector(this.translate(new Vector((this.step.x * i) + this.xBounds.x,this.yBounds.y)));
 			this.ctx.stroke();
 			this.ctx.textAlign = "center";
-			this.labelX && i % this.step.x == 0 && this.ctx.fillText(i + this.unitsX.abbr, this.translate(new Vector((this.step.x * i) + this.xBounds.x)).x, this.canvas.height - 15);
+			this.ctx.textBaseline = "top";
+			this.labelX && i % this.step.x == 0 && this.ctx.fillText(i + this.unitsX.abbr, this.translate(new Vector((this.step.x * i) + this.xBounds.x)).x, this.canvas.height - 30);
 		}
-		
-		
+
+
 		//Draw horizontal lines across y axis
 		for (var i = 0; i < boundsLength.y / this.step.y; i++){
 			this.flipColor(i,this.step.y);
@@ -73,7 +76,8 @@ class Graph {
 			this.ctx.lineToVector(this.translate(new Vector(this.xBounds.y,this.step.y * i + this.yBounds.x)));
 			this.ctx.stroke();
 			this.ctx.textAlign = "right";
-			this.labelY && i % this.step.y == 0 && this.ctx.fillText(i + this.unitsY.abbr,15,this.translate(new Vector(0,(this.step.y * i) + this.yBounds.x)).y);
+			this.ctx.textBaseline = "middle";
+			this.labelY && i % this.step.y == 0 && this.ctx.fillText(i + this.unitsY.abbr,30,this.translate(new Vector(0,(this.step.y * i) + this.yBounds.x)).y);
 			//console.log(this.translate(new Vector(0,(this.step.y * i) + this.yBounds.x)).y);
 		}
 		return this;
@@ -105,9 +109,13 @@ class Unit {
 	}
 }
 class DataSet {
-	constructor(dataPoints){
+	constructor(dataPoints,color){
 		this.dataPoints = dataPoints;
-		this.color = "red";
+		if (color == undefined){
+			this.color = "red";
+		} else {
+			this.color = color;
+		}
 	}
 	graph(width,height,stepX,stepY,forceZero,connectDots,unitsX,unitsY){
 		var graph;
@@ -123,6 +131,13 @@ class DataSet {
 		graph.createGridlines(new Vector(stepX,stepY),unitsX,unitsY);
 		graph.plot(this.dataPoints,connectDots);
 		return graph;
+  }
+  static generate(a,b,c,amount,color){
+	  var newSet = new DataSet([],color);
+	  for (var i = 0; i < amount; i++){
+		  newSet.dataPoints.push(new Vector(i,(a * i * i) + (b * i) + c));
+	  }
+	  return newSet;
   }
 }
 

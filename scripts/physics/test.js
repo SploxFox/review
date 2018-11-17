@@ -24,6 +24,9 @@ window.onload = function(){
     input.value = "";
   }
   document.body.appendChild(button);*/
-  window.setTimeout(function(){var graph = data.graph(500,500,1,5,true,false,seconds,meters);document.body.appendChild(graph.canvas);},1000);
-  
+  window.setTimeout(function(){
+      var graph = data.graph(500,500,1,5,true,false,seconds,meters);
+      document.body.appendChild(graph.canvas);
+  },1000);
+
 }
