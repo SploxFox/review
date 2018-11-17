@@ -169,3 +169,4 @@ function canvasToImage(canvas){
     image.classList.add("scalableImage");
     return image;
 }
+//a fragile commit
