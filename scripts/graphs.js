@@ -160,3 +160,12 @@ const pixels = new Unit(1,"px","pixel","pixels");
 const meters = new Unit(3779.5275590551,"m","meter","meters");
 const centimeters = new Unit(37.7952755906,"cm","centimeter","centimeters");
 const seconds = new Unit(1,"s","second","seconds");
+
+function canvasToImage(canvas){
+    var image = document.createElement("img");
+    image.src = canvas.toDataURL("image/png");
+    image.style.maxWidth = canvas.width + "px";
+    image.style.maxHeight = canvas.height + "px";
+    image.classList.add("scalableImage");
+    return image;
+}

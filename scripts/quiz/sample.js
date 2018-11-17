@@ -28,11 +28,3 @@ window.onload = function(){
     }*/
     document.body.appendChild(section.element);
 }
-function canvasToImage(canvas){
-    var image = document.createElement("img");
-    image.src = canvas.toDataURL("image/png");
-    image.style.maxWidth = canvas.width + "px";
-    image.style.maxHeight = canvas.height + "px";
-    image.classList.add("scalableImage");
-    return image;
-}
