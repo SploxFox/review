@@ -1,3 +1,29 @@
+class Quiz {
+    constructor(title,sections){
+        this.title = title;
+        this.sections = sections;
+        this.element = this.getElement();
+    }
+    set sections(value){
+        this._sections = value;
+        this.element = this.getElement();
+    }
+    get sections(){
+        return this._sections;
+    }
+    getElement(){
+        var quizElement = document.createElement("div");
+		var sectionsContainer = document.createElement("div");
+		var header = document.createElement("h1");
+		header.textContent = this.title;
+        for(var i = 0; i < this.sections.length; i++){
+            sectionsContainer.appendChild(this.sections[i].element);
+        }
+		quizElement.appendChild(header);
+		quizElement.appendChild(sectionsContainer);
+        return quizElement;
+    }
+}
 class Section {
     constructor(title,resources,questions){
         this.title = title;
@@ -7,10 +33,11 @@ class Section {
     }
     getElement(){
         var sectionElement = document.createElement("div");
-        sectionElement.classList.add("pop");
-        var titleElement = document.createElement("p");
+        sectionElement.classList.add("pop","section");
+		var innerSectionElement = document.createElement("div");
+		innerSectionElement.classList.add("innerSection");
+        var titleElement = document.createElement("h1");
         titleElement.textContent = this.title;
-
         sectionElement.appendChild(titleElement);
         if (this.resources.length != 0){
             var resourcesElement = document.createElement("div");
@@ -24,9 +51,11 @@ class Section {
             }
             sectionElement.appendChild(resourcesElement)
         }
+
         for(var i = 0; i < this.questions.length; i++){
-            sectionElement.appendChild(this.questions[i].element)
+			innerSectionElement.appendChild(this.questions[i].element)
         }
+		sectionElement.appendChild(innerSectionElement);
         return sectionElement;
     }
 }
@@ -71,20 +100,9 @@ class Answer {
     }
 }
 class Option {
-    constructor(text){
-        this.text = text;
-        this.element = this.getElement();
-        this.selected = false;
+    constructor(){
+        this._selected = false;
         //Use this.element instead of this.getElement()
-
-    }
-    //This just creates the element. For internal use only.
-    getElement(){
-        var optionElement = document.createElement("button");
-        optionElement.classList.add("selectable","pop");
-        optionElement.textContent = this.text;
-        optionElement.id = uuidv4();
-        return optionElement;
     }
     set selected(value /*Boolean*/){
         console.log(this);
@@ -94,6 +112,36 @@ class Option {
         } else {
             this.element.classList.remove("selected");
         }
+    }
+}
+class TextOption extends Option {
+    constructor(text){
+        super();
+        this.text = text;
+        this.element = this.getElement();
+    }
+    //This just creates the element. For internal use only.
+    getElement(){
+        var optionElement = document.createElement("button");
+        optionElement.classList.add("selectable","pop");
+        optionElement.textContent = this.text;
+        optionElement.id = uuidv4();
+        return optionElement;
+    }
+}
+class ImageOption extends Option {
+    constructor(image){
+        super();
+        this.image = image;
+        this.element = this.getElement();
+    }
+    getElement(){
+        var optionElement = document.createElement("button");
+        optionElement.classList.add("selectable","pop");
+        this.image.classList.add("noPointer");
+        optionElement.appendChild(this.image);
+        optionElement.id = uuidv4();
+        return optionElement;
     }
 }
 class MultipleChoiceAnswer extends Answer {

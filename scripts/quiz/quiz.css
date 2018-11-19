@@ -6,13 +6,15 @@ Dark Green: #106009
 */
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 * {
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 15px;
     --theme-selected: #21c113;
     --theme-dark: #106009;
     --theme-light: #43ff38;
     --theme-superblack: #072d04;
+	--font-family: 'Titillium Web', sans-serif;
+	--font-size: 15px;
     color: var(--theme-dark);
+	font-family: var(--font-family);
+    font-size: var(--font-size);
 }
 body {
     /*height: 100vh;
@@ -22,6 +24,9 @@ body {
 }
 img, canvas {
     margin: 20px;
+	background-color: white;
+	border-radius: 2px;
+	box-shadow: 0px 2px 5px rgba(255,255,255,0.5); /* its white */
 }
 
 /* Max width should be specified somewhere else */
@@ -29,17 +34,31 @@ img, canvas {
     width: 100%;
     height: auto;
 }
+.noPointer {
+    pointer-events: none;
+}
 *:focus {
     outline: none;
 }
-p {
+p,h1 {
     margin: 5px;
     padding: 15px 20px;
+}
+h1 {
+	margin: 0px;
+	color: white;
+	background-color: var(--theme-selected);
 }
 .pop, button {
     box-shadow: 0px 2px 5px grey;
     border-radius: 2px;
     background-color: white;
+	flex-grow: 1;
+}
+.innerSection {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
 }
 div.pop {
     margin: 40px;
