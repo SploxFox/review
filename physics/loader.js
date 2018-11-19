@@ -16,7 +16,7 @@ var accelorationPalette = new ColorPalette("blue",{
 
 window.onload = function(){
     var script = document.createElement("script");
-    script.src = "content/" + window.location.search.substring(1) + ".js";
+    script.src = "content/" + (new URLSearchParams(window.location.search.substring(1))).get('topic') + ".js";
     script.onload = start;
     document.body.appendChild(script);
     console.log("worked");
