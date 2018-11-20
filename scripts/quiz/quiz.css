@@ -5,6 +5,15 @@ Unselected: white
 Dark Green: #106009
 */
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+@keyframes slideIn {
+	0% {
+		top: 100vh;
+	}
+	100% {
+		top: 0px;
+	}
+}
 * {
     --theme-selected: #21c113;
     --theme-dark: #106009;
@@ -21,6 +30,7 @@ body {
     width: 100vw;*/
     margin: 0px;
     padding: 0px;
+	overflow: hidden;
 }
 img, canvas {
     margin: 20px;
@@ -41,7 +51,7 @@ img, canvas {
     outline: none;
 }
 p,h1 {
-    margin: 5px;
+    margin: 0px;
     padding: 15px 20px;
 }
 h1 {
@@ -59,9 +69,35 @@ h1 {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
+	padding: 20px;
 }
-div.pop {
+.innerSection > .pop {
+	margin: 20px;
+}
+div.pop:not(.indicator) {
     margin: 40px;
+}
+div.section, #mods {
+	margin: 20px;
+	padding-bottom: 0.016px;
+}
+.indicator {
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	background-image: url("assets/question-mark-rounded.svg");
+	margin: 0px;
+}
+.indicator.correct {
+	background-color: #21c113; /*Green */
+	background-image: url("assets/checkmark-rounded.svg");
+}
+.indicator.incorrect {
+	background-color: red;
+	background-image: url("assets/x-rounded.svg");
 }
 button {
     padding: 0px 5px;
@@ -80,7 +116,7 @@ button:hover {
 .selectable:focus, button:focus {
     outline: none;
 }
-.selectable.selected, button:hover:not(.selectable) {
+.selectable.selected, button:active:not(.selectable) {
     border: 0px solid var(--theme-selected);
     padding: 15px 20px;
     background-color: var(--theme-selected);
@@ -99,10 +135,22 @@ button:hover {
     display: block;
 }
 .question {
-    padding: 0px 5px;
-    border: 15px solid white;
+    padding: 15px 20px;
+    border: 0px solid white;
     display: block;
     transition: 0.5s;
+	position: relative;
+}
+.quiz {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	overflow: auto;
+	background-color: white;
+	transition: 0.5s;
+}
+.slideIn {
+	animation: 0.5s cubic-bezier(0, 0, 0.31, 1.00) 0s 1 slideIn;
 }
 /*.selectable, button {
     padding: 10px 20px;

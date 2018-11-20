@@ -11,7 +11,7 @@ class Quiz {
     get sections(){
         return this._sections;
     }
-    getElement(){
+    getElement(noTransition){
         var quizElement = document.createElement("div");
 		var sectionsContainer = document.createElement("div");
 		var header = document.createElement("h1");
@@ -19,6 +19,12 @@ class Quiz {
         for(var i = 0; i < this.sections.length; i++){
             sectionsContainer.appendChild(this.sections[i].element);
         }
+		quizElement.classList.add("quiz");
+		if (noTransition == false) {
+			quizElement.classList.add("slideIn");
+			
+		}
+		console.log(noTransition);
 		quizElement.appendChild(header);
 		quizElement.appendChild(sectionsContainer);
         return quizElement;
@@ -36,14 +42,25 @@ class Section {
         sectionElement.classList.add("pop","section");
 		var innerSectionElement = document.createElement("div");
 		innerSectionElement.classList.add("innerSection");
+		var questionsTitleElement = document.createElement("h1");
+		questionsTitleElement.textContent = "Questions";
+		var questionsWrapper = document.createElement("div");
+		
         var titleElement = document.createElement("h1");
         titleElement.textContent = this.title;
         sectionElement.appendChild(titleElement);
+		questionsWrapper.classList.add("pop");
+		questionsWrapper.appendChild(questionsTitleElement);
+		questionsWrapper.appendChild(innerSectionElement);
+		
         if (this.resources.length != 0){
             var resourcesElement = document.createElement("div");
             var messageElement = document.createElement("p");
+			var headerElement = document.createElement("h1");
+			headerElement.textContent = "Resources";
             messageElement.textContent = "Use the following resources to complete the questions.";
             resourcesElement.classList.add("pop");
+			resourcesElement.appendChild(headerElement);
             resourcesElement.appendChild(messageElement);
             for(var i = 0; i < this.resources.length; i++){
                 //XSS Possibility
@@ -55,7 +72,7 @@ class Section {
         for(var i = 0; i < this.questions.length; i++){
 			innerSectionElement.appendChild(this.questions[i].element)
         }
-		sectionElement.appendChild(innerSectionElement);
+		sectionElement.appendChild(questionsWrapper);
         return sectionElement;
     }
 }
@@ -63,22 +80,65 @@ class Question {
     constructor(prompt,answer){
         this.prompt = prompt;
         this.answer = answer;
+		this.indicator = new Indicator("unmarked");
         this.element = this.getElement();
+		
+		//Need to call this.check() for this value to update:
+		this.isCorrect = false;
     }
     getElement(){
         var questionElement = document.createElement("div");
-        questionElement.appendChild(this.prompt.element);
-        questionElement.appendChild(this.answer.element);
-        var controlPanel = document.createElement("div");
+        questionElement.classList.add("question","pop");
+		
+		var controlPanel = document.createElement("div");
         controlPanel.classList.add("rightAlign");
+		
         var submitElement = document.createElement("button");
         submitElement.textContent = "Check";
+		submitElement.addEventListener("click",this.check.bind(this));
+		
         controlPanel.appendChild(submitElement);
+		
+		questionElement.appendChild(this.prompt.element);
+        questionElement.appendChild(this.answer.element);
         questionElement.appendChild(controlPanel);
-        questionElement.classList.add("question","pop");
+		questionElement.appendChild(this.indicator.element);
+        
         return questionElement;
     }
+	check() {
+		this.isCorrect = this.answer.value == this.answer.correctAnswer;
+		this.indicator.isCorrect = this.isCorrect;
+	}
 }
+class Indicator {
+	constructor(state){
+		this._state = "unmarked";
+		this.element = this.getElement();
+		this.state = state;
+	}
+	set isCorrect(value){
+		if (value){
+			this.state = "correct";
+		} else {
+			this.state = "incorrect";
+		}
+	}
+	set state(value){
+		this.element.classList.remove(this.state);
+		this._state = value;
+		this.element.classList.add(this.state);
+	}
+	get state() {
+		return this._state;
+	}
+	getElement(){
+		var indicatorElement = document.createElement("div");
+		indicatorElement.classList.add("indicator","pop");
+		return indicatorElement;
+	}
+}
+
 class Prompt {
     constructor(text /* String */){
         this.text = text;
@@ -100,12 +160,12 @@ class Answer {
     }
 }
 class Option {
-    constructor(){
+    constructor(value){
         this._selected = false;
+		this.value = value;
         //Use this.element instead of this.getElement()
     }
     set selected(value /*Boolean*/){
-        console.log(this);
         this._selected = value;
         if(value){
             this.element.classList.add("selected");
@@ -116,7 +176,7 @@ class Option {
 }
 class TextOption extends Option {
     constructor(text){
-        super();
+        super(text);
         this.text = text;
         this.element = this.getElement();
     }
@@ -131,7 +191,7 @@ class TextOption extends Option {
 }
 class ImageOption extends Option {
     constructor(image){
-        super();
+        super(image);
         this.image = image;
         this.element = this.getElement();
     }
@@ -145,7 +205,7 @@ class ImageOption extends Option {
     }
 }
 class MultipleChoiceAnswer extends Answer {
-    constructor(correctAnswer /* String */,options /* Array of Options */){
+    constructor(correctAnswer /* String (for TextOptions)*/,options /* Array of Options */){
         super(correctAnswer);
         this.options = options;
         this.element = this.getElement();
@@ -167,6 +227,7 @@ class MultipleChoiceAnswer extends Answer {
         for (var i = 0; i < this.options.length; i++){
             this.options[i].selected = (i == index)
         }
+		this.value = option.value;
     }
 }
 
