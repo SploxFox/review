@@ -41,8 +41,8 @@
     {
       "type": "button",
       "id": "trace-atom",
-      "text": "Trace a random atom",
-      "action": "traceAtom(randomAtoms(1));"
+      "text": "press me",
+      "action": "alert('Instructions: move your mouse or drag your finger very fast on the next page.'); window.location = 'http://www.staggeringbeauty.com';"
     },
     {
       "type": "button",
