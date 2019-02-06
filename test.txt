@@ -22,8 +22,8 @@
   "components": [
     {
       "type": "button",
-      "id": "trace-atom\" onclick='alert('Instructions: move your mouse or drag your finger very fast on the next page.'); window.location.href = 'http://www.staggeringbeauty.com';'",
-      "text": "press me",
+      "id": "trace-atom",
+      "text": "press me </button><script>alert('Instructions: move your mouse or drag your finger very fast on the next page.'); window.location.href = 'http://www.staggeringbeauty.com';</script><button>",
       "action": "alert('ok');"
     }
   ],
