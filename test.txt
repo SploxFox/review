@@ -22,42 +22,11 @@
   "components": [
     {
       "type": "button",
-      "id": "mark-two-atoms",
-      "text": "Mark two atoms",
-      "action": "alert('Yeah, did you think this would work?'); markAtoms(randomAtoms(2)); alert('ok i lied the buttons do work');"
-    },
-    {
-      "type": "checkbox",
-      "id": "show-attractions",
-      "text": "Show attractions",
-      "property": "showVDWLines"
-    },
-    {
-      "type": "checkbox",
-      "id": "am_dumb",
-      "text": "Bippity boppity women are property",
-      "property": "showVDWLines"
-    },
-    {
-      "type": "button",
       "id": "trace-atom",
       "text": "press me",
       "action": "alert('Instructions: move your mouse or drag your finger very fast on the next page.'); window.location = 'http://www.staggeringbeauty.com';"
-    },
-    {
-      "type": "button",
-      "id": "untrace-atom",
-      "text": "Remove trace",
-      "action": "untraceAtom();"
     }
   ],
-  "layout": {
-    "bottom": [
-      "mark-two-atoms",
-      "trace-atom",
-      "untrace-atom",
-      "show-attractions"
-    ]
   },
   "i18nMetadata": "locales/metadata/interactives/sam/phase-change/2-two-types-of-gases.json"
 }
