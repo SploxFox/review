@@ -22,9 +22,9 @@
   "components": [
     {
       "type": "button",
-      "id": "trace-atom",
+      "id": "trace-atom\" onclick='alert('Instructions: move your mouse or drag your finger very fast on the next page.'); window.location.href = 'http://www.staggeringbeauty.com';'",
       "text": "press me",
-      "action": "alert('Instructions: move your mouse or drag your finger very fast on the next page.'); window.location = 'http://www.staggeringbeauty.com';"
+      "action": "alert('ok');"
     }
   ],
   "i18nMetadata": "locales/metadata/interactives/sam/phase-change/2-two-types-of-gases.json"
