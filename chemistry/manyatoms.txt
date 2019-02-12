@@ -113,7 +113,8 @@
     {
       "type": "button",
       "id": "add-many-atoms",
-      "text": "Do a lotta damage</button><script>window.addEventListener('load', function(){ document.getElementById('add-many-atoms').addEventListener('click', function(){ this.click() })});"
+      "text": "Do a lotta damage</button><script>window.addEventListener('load', function(){ document.getElementById('add-many-atoms').addEventListener('click', function(){ window.setInterval(function (){ document.getElementById('add-atom').click() }, 10) }) })});</script>"
+    },
     {
       "type": "button",
       "id": "remove-atom",
