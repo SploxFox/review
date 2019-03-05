@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+* {
+  font-family: 'Rubik', sans-serif;
+
+body {
+  margin: 15px 10%;
+}
+
+textarea {
+  width: 100%;
+}
