@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <info>
-	<message>
-		<title>Event</title>
-		<description>It’s happening never.</description>
+	<message title="Event">
+		<label>It’s happening never.</label>
 	</message>
 </info>
