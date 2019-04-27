@@ -1,0 +1,128 @@
+{
+"episodes":[
+{
+"title": "The Scientific Turnabout",
+"chapters": [
+{
+"title": "Trial Lobby",
+"content": [
+{
+"character":"$Rookie",
+"speech": [
+"##mode(thought)(My name is $Rookie, and I'm a defence attorney.)",
+"(More specifically, I am a \"scientific attorney\"--and today is my first case.)"
+]
+},
+{
+"backdrop": "lobby.png",
+"music": "lobby.mp3"
+},
+{
+"character":"$Mentor",
+"speech": [
+"Well, I'm sure this isn't what you had in mind as your first case…",
+"After all, you pursued a degree in chemistry and law with the intent of defending patent rights, right?"
+]
+},
+{
+"character":"Baliff",
+"speech": [
+"The trial will be starting in 5 minutes."
+]
+},
+{
+"character":"$Mentor",
+"speech":[
+"Oh, then we better get going."
+]
+}
+]
+},
+{
+"title":"Trial Start",
+"content": [
+{
+"backdrop":"court",
+"focus":"defense"
+},
+{
+"transition":"pan",
+"focus":"prosecution"
+},
+{
+"character":"rookie",
+"speech": [
+"##mode(thought)(The prosecution seems to be ready…)"
+]
+},
+{
+"sequence":"gavel"
+},
+{
+"autotransition":true,
+"set": {
+"judge": "judge",
+"defense": "rookie",
+"prosecution": "prosecution",
+"side": "mentor",
+"stand": null
+}
+},
+{
+"character":"judge",
+"speech": [
+"Court is now in session for the trial of $Defendant.full.",
+"Prosecution, are you ready?"
+]
+},
+{
+"character":"prosecution",
+"speech":[
+"Of course, Your Honor."
+]
+},
+{
+"character":"judge",
+"speech":[
+"Defense, are you ready?"
+]
+},
+{
+"character":"defense",
+"speech":[
+"Yes, Your Honor."
+]
+},
+{
+"character":"judge",
+"speech": [
+"Good.",
+"Prosecution, if you would begin with your opening statement."
+]
+},
+{
+"character":"prosecution",
+"speech": [
+"The prosecution would like to outline the facts about this case.",
+"On September 19th, at approximately 1pm, the defendant and their lab partners were experimenting on a certain substance to determine its properties.",
+"Their research was funded by the Kem & Hicals company (or K&H for short), who wanted to discover the properties of the substance.",
+"The substance itself is a trade secret, and the court is gracious that K&H has provided it with some details about the substance.",
+"Anyways, due to the defendant's malpractice, the lab tube exploded, killing the victim.",
+"This is what the court hopes to prove.",
+"To explain the experiment better to the court, a reliable scientist is prepared to testify about it.",
+"This scientist would also like to model the experiment on a whiteboard."
+]
+},
+{
+"testimony":"experiment-explanation"
+}
+]
+}
+]
+},
+{
+"title":"Turnabout for Futurity",
+"locked":true
+}
+]
+}
