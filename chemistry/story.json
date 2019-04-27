@@ -7,10 +7,14 @@
 "title": "Trial Lobby",
 "content": [
 {
+"new-evidence":"case-brief",
+"description": "The victim was killed while performing a chemistry experiment by an exploding test tube. Chemical burns and glass punctures were found on the body.",
+"notification" : false
+{
 "character":"$Rookie",
 "speech": [
-"##mode(thought)(My name is $Rookie, and I'm a defence attorney.)",
-"(More specifically, I am a \"scientific attorney\"--and today is my first case.)"
+"##mode(thought)(My name is $Rookie, and I'm training to become a defence attorney.)",
+"##mode(thought)(More specifically, I am a going to be a \"scientific attorney\"--and today is my first real case.)"
 ]
 },
 {
@@ -20,8 +24,30 @@
 {
 "character":"$Mentor",
 "speech": [
-"Well, I'm sure this isn't what you had in mind as your first case…",
+"You know, you're quite brave to take on a murder trial as your first case.",
 "After all, you pursued a degree in chemistry and law with the intent of defending patent rights, right?"
+]
+},
+{
+"character": "$Rookie",
+"speech": [
+"Yeah… but I guess a murder trial is okay too.",
+"The case is heavily involved in chemistry, after all."
+]
+},
+{
+"character": "$Mentor",
+"speech" : [
+"##mode(question)Oh, it does? How do you know that this case is chemistry-related? ##mode(normal)Show me some evidence from the Court Record."
+],
+"evidence":"case-brief",
+"wrong" : [
+{
+"character": "$Mentor",
+"speech": [
+"Really? I fail to see how that answers my question."
+]
+}
 ]
 },
 {
