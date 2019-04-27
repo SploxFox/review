@@ -7,9 +7,11 @@
 "title": "Trial Lobby",
 "content": [
 {
-"new-evidence":"case-brief",
+"newevidence":"case-brief",
+"name": "Case Brief",
 "description": "The victim was killed while performing a chemistry experiment by an exploding test tube. Chemical burns and glass punctures were found on the body.",
 "notification" : false
+},
 {
 "character":"$Rookie",
 "speech": [
