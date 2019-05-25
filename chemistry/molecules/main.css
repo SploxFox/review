@@ -1,0 +1,95 @@
+:root {
+    font-family: 'Bitter', serif;
+    --click: rgb(18, 64, 214);
+    outline: none;
+    line-height: 1.5em;
+}
+
+*:focus {
+    outline: none;
+}
+
+.fraction {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.2em;
+}
+
+.fraction > span:first-child {
+    border-bottom: thin solid black;
+}
+
+.fraction > span {
+    display: block;
+    text-align: center;
+    padding: 0.1em;
+}
+
+select, button {
+    padding: 10px 15px;
+    font-size: 15px;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 2px 10px rgba(1,1,1,0.2);
+    margin: 5px 3px;
+    font-family: 'Open Sans', sans-serif;
+    cursor: pointer;
+}
+
+select {
+    padding: 9px 15px;
+}
+
+button {
+    color: var(--click);
+    transition: 0.2s;
+}
+
+button.important {
+    color: white;
+    flex-grow: 2;
+    background: var(--click);
+    max-width: 200px;
+}
+
+#buttonContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+}
+
+#buttonContainer > button {
+    max-width: 150px;
+}
+
+#buttonContainer > button.important {
+    max-width: 200px;
+}
+
+#answer {
+    background-color: rgb(230, 230, 230);
+    padding: 10px;
+    margin: 5px 3px;
+    border-radius: 5px;
+}
+
+body {
+    max-width: 700px;
+    padding: 10px;
+    margin: auto;
+}
+
+#prompt {
+}
+
+h5 {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 0;
+}
+
+button.disabled {
+    color: gray;
+    background-color: white;
+    cursor: default;
+}

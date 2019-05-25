@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+
+<html>
+
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Bitter|Open+Sans&display=swap" rel="stylesheet">
+        <link href="main.css" rel=stylesheet>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body>
+        <select id="questionSelect">
+            <option value=""> Select a Question </option>
+            <option value="empirical-to-chemical">Empirical to Chemical</option>
+            <option value="mass-percent-to-empirical">Mass Percentages to Empirical</option>
+            <option value="mass-percent-to-chemical">Mass Percentages to Chemical</option>
+            <option value="two-mass-compositions-to-chemical">Two Mass Compositions to Chemical</option>
+        </select>
+        <button id="generateQuestion" class="important disabled">
+            Generate Question
+        </button>
+        <div id="question" style="display: none">
+            <h5>Question</h5>
+            <div id="prompt">
+
+            </div>
+            <h5>Answer</h5>
+            <div id="answer" contenteditable="true" spellcheck="false" placeholder="Enter your answer here. Numbers are automatically subscripted.">
+            </div>
+            <div id="buttonContainer">
+                <button class="important" id="checkAnswer">
+                    Check Answer
+                </button>
+                <button id="seeSolution">
+                    See Solution
+                </button>
+            </div>
+        </div>
+        <span id="feedback"></span>
+        <script src="main.js"></script>
+    </body>
+
+</html>
